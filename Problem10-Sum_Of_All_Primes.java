@@ -42,3 +42,46 @@ public class Solution {
         return true;
     }
 }
+
+//using dp
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int a0 = 0; a0 < t; a0++){
+            int n = in.nextInt();
+            long sum = sumPrime(n);
+            System.out.println(sum);
+        }
+    }
+    public static long sumPrime(int n){
+        
+        long dp[] = new long[n+1];
+        long arr[] = new long[n+1];
+        arr[0]=1; arr[1]=1;
+        for(int i=2 ; i<=Math.sqrt(n); i++){
+            if(arr[i]==0){
+                for(int j=i*i; j<=n; j+=i){
+                    arr[j] = 1;
+                }
+            }
+            
+        }
+        
+        long sum = 0;
+        for(int i=1; i<=n; i++){
+            if(arr[i] ==0){
+                sum = sum + i;
+            }
+            dp[i] =sum;
+        }
+        return dp[n];
+    }
+}
